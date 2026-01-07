@@ -1,6 +1,6 @@
 # \GroupApi
 
-All URIs are relative to _https://hornet.snt.utwente.nl/_
+All URIs are relative to _https://hornet.snt.utwente.nl_
 
 | Method                                                                                                                             | HTTP request                                            | Description                      |
 | ---------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- | -------------------------------- |
