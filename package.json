@@ -1,0 +1,13 @@
+{
+    "name": "@nixysoftware/snt-hornet",
+    "description": "Rust OpenAPI client for SNT Hornet.",
+    "author": "Nixy <info@nixy.software>",
+    "repository": "github:NixySoftware/snt-hornet",
+    "license": "MIT",
+    "private": true,
+    "scripts": {},
+    "devDependencies": {
+        "@openapitools/openapi-generator-cli": "^2.27.0",
+        "prettier": "^3.7.4"
+    }
+}

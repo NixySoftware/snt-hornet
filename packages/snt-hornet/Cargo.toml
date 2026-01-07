@@ -1,0 +1,25 @@
+[package]
+name = "snt-hornet"
+
+authors.workspace = true
+description.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+version.workspace = true
+
+[features]
+default = ["native-tls"]
+native-tls = ["reqwest/native-tls"]
+rustls-tls = ["reqwest/rustls-tls"]
+bon = ["dep:bon"]
+
+[dependencies]
+async-trait = "^0.1"
+bon = { version = "^3.6", optional = true }
+reqwest = { version = "^0.12", default-features = false, features = ["json", "multipart", "stream"] }
+reqwest-middleware = { version = "^0.4", features = ["json", "multipart"] }
+serde = { version = "^1.0", features = ["derive"] }
+serde_json = "^1.0"
+serde_repr = "^0.1"
+url = "^2.5"

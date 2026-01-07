@@ -1,0 +1,12 @@
+[tasks.generate]
+script = [
+    "sed -i.bak \"s/Header Auth/HeaderAuth/\" openapi.json",
+    "sed -i.bak \"s/Query Auth/QueryAuth/\" openapi.json",
+    "npx openapi-generator-cli generate -i openapi.json -o packages/snt-hornet -g rust --package-name snt-hornet --additional-properties=bestFitInt=true,library=reqwest-trait,supportMiddleware=true,topLevelApiClient=true,useBonBuilder=true,useSingleRequestParameter=true",
+    "cargo run -p scripts --bin modify",
+    "cargo clippy --fix --allow-dirty",
+    "npx prettier --write .",
+    "cargo fmt",
+    "cargo sort --workspace",
+]
+workspace = false
