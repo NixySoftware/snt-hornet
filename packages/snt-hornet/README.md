@@ -12,6 +12,8 @@ cargo add snt-hornet
 
 ## Documentation
 
+Documentation for is available on [Docs.rs](https://docs.rs/snt-hornet/latest/snt_hornet/).
+
 ### Documentation for API Endpoints
 
 All URIs are relative to _https://hornet.snt.utwente.nl_
@@ -56,4 +58,4 @@ All URIs are relative to _https://hornet.snt.utwente.nl_
 
 ## License
 
-This project is available under the [MIT license](LICENSE.md).
+This project is available under the [MIT license](../../LICENSE.md).
