@@ -1,6 +1,6 @@
 use std::{fs, path::Path};
 
-use toml_edit::{DocumentMut, Formatted, Item, Key, Table, Value};
+use toml_edit::{Array, DocumentMut, Formatted, Item, Key, Table, Value};
 
 const PACKAGE: &str = "snt-hornet";
 
@@ -40,23 +40,67 @@ fn main() {
         (Key::new("version"), Item::Table(workspace_table.clone())),
     ]));
 
+    *document
+        .get_mut("features")
+        .expect("Manifest should have features item.") = Item::Table(Table::from_iter([
+        (
+            Key::new("default"),
+            Item::Value(Value::Array(Array::from_iter([Value::String(
+                Formatted::new("reqwest/default-tls".to_owned()),
+            )]))),
+        ),
+        (
+            Key::new("bon"),
+            Item::Value(Value::Array(Array::from_iter([Value::String(
+                Formatted::new("dep:bon".to_owned()),
+            )]))),
+        ),
+        (
+            Key::new("native-tls"),
+            Item::Value(Value::Array(Array::from_iter([Value::String(
+                Formatted::new("reqwest/native-tls".to_owned()),
+            )]))),
+        ),
+        (
+            Key::new("rustls"),
+            Item::Value(Value::Array(Array::from_iter([Value::String(
+                Formatted::new("reqwest/rustls".to_owned()),
+            )]))),
+        ),
+    ]));
+
     let item = document
         .get_mut("dependencies")
         .expect("Manifest should have dependencies item.");
-
-    *item
-        .get_mut("reqwest-middleware")
-        .expect("Dependency bon should exist.")
-        .get_mut("version")
-        .expect("Dependency should have version.") =
-        Item::Value(Value::String(Formatted::new("^0.4".to_owned())));
 
     *item
         .get_mut("bon")
         .expect("Dependency bon should exist.")
         .get_mut("version")
         .expect("Dependency should have version.") =
-        Item::Value(Value::String(Formatted::new("^3.6".to_owned())));
+        Item::Value(Value::String(Formatted::new("^3.8".to_owned())));
+
+    *item
+        .get_mut("reqwest")
+        .expect("Dependency reqwest should exist.")
+        .get_mut("version")
+        .expect("Dependency should have version.") =
+        Item::Value(Value::String(Formatted::new("^0.13".to_owned())));
+
+    *item
+        .get_mut("reqwest-middleware")
+        .expect("Dependency reqwest-middleware should exist.")
+        .get_mut("version")
+        .expect("Dependency should have version.") =
+        Item::Value(Value::String(Formatted::new("^0.5".to_owned())));
+
+    item.get_mut("reqwest-middleware")
+        .expect("Dependency reqwest-middleware should exist.")
+        .get_mut("features")
+        .expect("Dependency should have features.")
+        .as_array_mut()
+        .expect("Features should be an array.")
+        .push(Value::String(Formatted::new("query".to_owned())));
 
     document
         .get_mut("features")
