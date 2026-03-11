@@ -5,6 +5,11 @@
         "description": "The Hornet API can be used to programmatically update exposed association data. If you're missing functionality or you experience any problem using the API, you can always contact us.\n\nYou will need an API token consisting of a client id and a token value in order to use this API. You can either authenticate using a request header or a query parameter, the choice is yours.\n\nThe API is only documented in English.",
         "version": "1.0"
     },
+    "servers": [
+        {
+            "url": "https://hornet.snt.utwente.nl"
+        }
+    ],
     "paths": {
         "/api/association": {
             "get": {
@@ -921,6 +926,7 @@
                         "title": "Archive enabled.",
                         "description": "By setting this to true, a archive mailbox will be created which will receive all mails sent to this committee.",
                         "type": "boolean",
+                        "default": false,
                         "example": true
                     }
                 },
@@ -931,6 +937,7 @@
                     "name": {
                         "title": "Group name.",
                         "type": "string",
+                        "default": "",
                         "example": "Webcom"
                     }
                 },
@@ -942,11 +949,13 @@
                         "title": "Archive enabled.",
                         "description": "By setting this to true, a archive mailbox will be created which will receive all mails sent to this committee.",
                         "type": "boolean",
+                        "default": false,
                         "example": true
                     },
                     "name": {
                         "title": "Group name.",
                         "type": "string",
+                        "default": "",
                         "example": "Webcom"
                     }
                 },
@@ -957,12 +966,14 @@
                     "admin": {
                         "title": "Whether the user should be administrator.",
                         "type": "boolean",
+                        "default": false,
                         "example": false
                     },
                     "mail_size": {
                         "title": "User-specific mailbox limit. Send \"null\" to clear the user-specific mailbox limit.",
                         "description": "You will need to enter a valid storage size here, in the format <number><G/M/K>. For example, use 1G for one\ngigabyte.",
                         "type": "string",
+                        "default": "",
                         "example": "100M"
                     }
                 },
@@ -973,22 +984,26 @@
                     "admin": {
                         "title": "Whether the user should be administrator.",
                         "type": "boolean",
+                        "default": false,
                         "example": false
                     },
                     "internal_username": {
                         "title": "User internal username.",
                         "type": "string",
+                        "default": "",
                         "example": "bob"
                     },
                     "mail_size": {
                         "title": "User-specific mailbox limit. Send \"null\" to set to the default mailbox limit.",
                         "description": "You will need to enter a valid storage size here, in the format <number><G/M/K>. For example, use 1G for one\ngigabyte.",
                         "type": "string",
+                        "default": "",
                         "example": "100M"
                     },
                     "username": {
                         "title": "User e-mail address, which will be used to determine whether it is a new or existing user.",
                         "type": "string",
+                        "default": "",
                         "example": "bob@gmail.com"
                     }
                 },
@@ -999,22 +1014,26 @@
                     "contact_email_address": {
                         "title": "Contact e-mail address.",
                         "type": "string",
+                        "default": "",
                         "example": "bestuur@snt.utwente.nl"
                     },
                     "default_emailbox_size": {
                         "title": "Default email box size.",
                         "description": "You will need to enter a valid storage size here, in the format <number><G/M/K>. For example, use 1G for one\ngigabyte.",
                         "type": "string",
+                        "default": "",
                         "example": "100M"
                     },
                     "name": {
                         "title": "Association name.",
                         "type": "string",
+                        "default": "",
                         "example": "SNT"
                     },
                     "technical_contact_email_address": {
                         "title": "Technical contact email address.",
                         "type": "string",
+                        "default": "",
                         "example": "webcom@snt.utwente.nl"
                     }
                 },
@@ -1024,7 +1043,8 @@
                 "properties": {
                     "username": {
                         "title": "User e-mail address, which will be used to determine whether it is a new or existing user.",
-                        "type": "string"
+                        "type": "string",
+                        "default": ""
                     }
                 },
                 "type": "object"
@@ -1037,11 +1057,23 @@
                         "readOnly": true,
                         "example": "bob@gmail.com"
                     },
+                    "first_name": {
+                        "title": "User first name.",
+                        "type": "string",
+                        "readOnly": true,
+                        "example": "Bob"
+                    },
                     "has_hornet_account": {
                         "title": "Whether this user has a Hornet account.",
                         "type": "boolean",
                         "readOnly": true,
                         "example": true
+                    },
+                    "last_name": {
+                        "title": "User last name.",
+                        "type": "string",
+                        "readOnly": true,
+                        "example": "Doe"
                     },
                     "two_factor_enabled": {
                         "title": "Whether this user has two factor enabled.",
