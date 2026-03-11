@@ -15,8 +15,12 @@ use serde::{Deserialize, Serialize};
 pub struct Member {
     #[serde(rename = "email_address", skip_serializing_if = "Option::is_none")]
     pub email_address: Option<String>,
+    #[serde(rename = "first_name", skip_serializing_if = "Option::is_none")]
+    pub first_name: Option<String>,
     #[serde(rename = "has_hornet_account", skip_serializing_if = "Option::is_none")]
     pub has_hornet_account: Option<bool>,
+    #[serde(rename = "last_name", skip_serializing_if = "Option::is_none")]
+    pub last_name: Option<String>,
     #[serde(rename = "two_factor_enabled", skip_serializing_if = "Option::is_none")]
     pub two_factor_enabled: Option<bool>,
 }
@@ -25,7 +29,9 @@ impl Member {
     pub fn new() -> Member {
         Member {
             email_address: None,
+            first_name: None,
             has_hornet_account: None,
+            last_name: None,
             two_factor_enabled: None,
         }
     }
